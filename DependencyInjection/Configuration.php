@@ -18,6 +18,12 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('subugoe_resolver');
 
+        $rootNode
+            ->children()
+                ->scalarNode('service')->end()
+                ->scalarNode('servicehome')->end()
+            ->end();
+
         return $treeBuilder;
     }
 }

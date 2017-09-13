@@ -50,8 +50,8 @@ class ResolverController extends Controller
         $localPersistentIdentifier = new LocalPersistentIdentifier();
         $localPersistentIdentifier
             ->setRequestedLocalPersistentIdentifier($request->getUri())
-            ->setService('GDZ Document Server')
-            ->setServicehome('https://gdz.sub.uni-goettingen.de')
+            ->setService($this->getParameter('subugoe_resolver.service'))
+            ->setServicehome($this->getParameter('subugoe_resolver.servicehome'))
             ->setUrl($this->get('router')->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL));
 
         $resolvedLpi->setLocalPersistentIdentifier([$localPersistentIdentifier]);

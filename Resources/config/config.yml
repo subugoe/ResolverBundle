@@ -1,0 +1,3 @@
+subugoe_resolver:
+  service:      "GDZ Document Server"
+  servicehome:  "https://gdz.sub.uni-goettingen.de"
