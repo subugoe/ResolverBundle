@@ -13,7 +13,6 @@
        "psr-4": { "Subugoe\\ResolverBundle\\": "" }
     },
     "require": {
-        "jms/serializer-bundle": "^2.0",
-        "subugoe/find-bundle": "^1.1"
+        "jms/serializer-bundle": "^2.0"
     }
 }
