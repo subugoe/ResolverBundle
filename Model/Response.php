@@ -6,6 +6,8 @@ use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Response section for resolver response.
+ *
+ * @Serializer\XmlRoot("response")
  */
 class Response
 {

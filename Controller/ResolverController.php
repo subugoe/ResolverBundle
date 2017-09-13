@@ -36,14 +36,13 @@ class ResolverController extends Controller
         $resolverResponse = $this->getResolverResponse($id, $request);
 
         $response->headers->set('Content-Type', 'application/xml; charset=utf-8');
-        $response->setContent($resolverResponse);
+        $response->setContent($this->get('jms_serializer')->serialize($resolverResponse, 'xml'));
 
         return $response;
     }
 
-    private function getResolverResponse(string $id, Request $request)
+    private function getResolverResponse(string $id, Request $request): \Subugoe\ResolverBundle\Model\Response
     {
-        $serializer = $this->get('jms_serializer');
         $response = new \Subugoe\ResolverBundle\Model\Response();
         $response->setHeader(new Header());
 
@@ -59,7 +58,7 @@ class ResolverController extends Controller
 
         $response->setResolvedLocalPersistentIdentifier($resolvedLpi);
 
-        return $serializer->serialize($response, 'xml');
+        return $response;
     }
 
     /**
