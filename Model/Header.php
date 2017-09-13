@@ -2,6 +2,8 @@
 
 namespace Subugoe\ResolverBundle\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Header section for resolver.
  */
@@ -9,6 +11,7 @@ class Header
 {
     /**
      * @var string
+     * @Serializer\XmlElement(cdata=false)
      */
     private $version = '0.1';
 

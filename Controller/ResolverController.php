@@ -6,6 +6,9 @@ namespace Subugoe\ResolverBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Subugoe\ResolverBundle\Exception\ResolverException;
+use Subugoe\ResolverBundle\Model\Header;
+use Subugoe\ResolverBundle\Model\LocalPersistentIdentifier;
+use Subugoe\ResolverBundle\Model\ResolvedLocalPersistentIdentifier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +19,7 @@ class ResolverController extends Controller
     /**
      * @Route("/resolve", name="_resolve", methods={"GET","POST"})
      */
-    public function indexAction(Request $request): Response
+    public function indexAction(Request $request)
     {
         if (strpos($request->get('PID'), '|')) {
             $id = explode('|', $request->get('PID'))[0];
@@ -30,15 +33,33 @@ class ResolverController extends Controller
 
         $response = new Response();
 
-        $route = $this->get('router')->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL);
-        $response->headers->set('Content-Type', 'application/xml; charset=utf-8');
+        $resolverResponse = $this->getResolverResponse($id, $request);
 
-        return $this->render(
-            'resolve/resolve.xml.twig', [
-                'route' => $route,
-            ],
-            $response
-        );
+        $response->headers->set('Content-Type', 'application/xml; charset=utf-8');
+        $response->setContent($resolverResponse);
+
+        return $response;
+    }
+
+    private function getResolverResponse(string $id, Request $request)
+    {
+        $serializer = $this->get('jms_serializer');
+        $response = new \Subugoe\ResolverBundle\Model\Response();
+        $response->setHeader(new Header());
+
+        $resolvedLpi = new ResolvedLocalPersistentIdentifier();
+        $localPersistentIdentifier = new LocalPersistentIdentifier();
+        $localPersistentIdentifier
+            ->setRequestedLocalPersistentIdentifier($request->getUri())
+            ->setService('GDZ Document Server')
+            ->setServicehome('https://gdz.sub.uni-goettingen.de')
+            ->setUrl($this->get('router')->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL));
+
+        $resolvedLpi->setLocalPersistentIdentifier([$localPersistentIdentifier]);
+
+        $response->setResolvedLocalPersistentIdentifier($resolvedLpi);
+
+        return $serializer->serialize($response, 'xml');
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace Subugoe\ResolverBundle\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * LPI.
  */
@@ -9,6 +11,7 @@ class ResolvedLocalPersistentIdentifier
 {
     /**
      * @var array<LocalPersistentIdentifier>
+     * @Serializer\SerializedName("LPI")
      */
     private $localPersistentIdentifier;
 

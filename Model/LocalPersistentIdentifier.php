@@ -2,6 +2,8 @@
 
 namespace Subugoe\ResolverBundle\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Identifier used for the resolver.
  */
@@ -9,36 +11,45 @@ class LocalPersistentIdentifier
 {
     /**
      * @var string
+     * @Serializer\SerializedName("requestedLPI")
+     * @Serializer\XmlElement(cdata=false)
      */
     private $requestedLocalPersistentIdentifier;
 
     /**
      * @var string
+     * @Serializer\XmlElement(cdata=false)
      */
     private $service;
 
     /**
      * @var string
+     * @Serializer\XmlElement(cdata=false)
      */
     private $servicehome;
 
     /**
      * @var string
+     * @Serializer\SerializedName("URL")
+     * @Serializer\XmlElement(cdata=false)
      */
     private $url;
 
     /**
      * @var string
+     * @Serializer\XmlElement(cdata=false)
      */
     private $mine;
 
     /**
      * @var string
+     * @Serializer\XmlElement(cdata=false)
      */
     private $version = '1.0';
 
     /**
      * @var string
+     * @Serializer\XmlElement(cdata=false)
      */
     private $access = 'free';
 

@@ -2,6 +2,8 @@
 
 namespace Subugoe\ResolverBundle\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Identifier section for LPI node.
  */
@@ -9,6 +11,7 @@ class Identifier
 {
     /**
      * @var string
+     * @Serializer\XmlAttribute()
      */
     private $scheme;
 

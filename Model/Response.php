@@ -2,6 +2,8 @@
 
 namespace Subugoe\ResolverBundle\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Response section for resolver response.
  */
@@ -9,11 +11,13 @@ class Response
 {
     /**
      * @var Header
+     * @Serializer\XmlElement(cdata=false)
      */
     private $header;
 
     /**
      * @var ResolvedLocalPersistentIdentifier
+     * @Serializer\SerializedName("resolvedLPIs")
      */
     private $resolvedLocalPersistentIdentifier;
 
