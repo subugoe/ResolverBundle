@@ -50,8 +50,8 @@ class ResolverController extends Controller
         $localPersistentIdentifier = new LocalPersistentIdentifier();
         $localPersistentIdentifier
             ->setRequestedLocalPersistentIdentifier($request->getUri())
-            ->setService($this->getParameter('subugoe_resolver.service'))
-            ->setServicehome($this->getParameter('subugoe_resolver.servicehome'))
+            ->setService($this->getParameter('service'))
+            ->setServicehome($this->getParameter('servicehome'))
             ->setUrl($this->get('router')->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL));
 
         $resolvedLpi->setLocalPersistentIdentifier([$localPersistentIdentifier]);
