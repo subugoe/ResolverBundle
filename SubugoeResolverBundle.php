@@ -1,6 +1,6 @@
 <?php
 
-namespace Subugoe\SubugoeResolverBundle;
+namespace Subugoe\ResolverBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
