@@ -1,0 +1,12 @@
+{
+    "name": "subugoe/resolver-bundle",
+    "description": "Bundle for using in conjunction with the SUB resolver Edit",
+    "type": "library",
+    "license": "AGPL-3.0",
+    "authors": [
+        {
+            "name": "Ingo Pfennigstorf",
+            "email": "i.pfennigstorf@gmail.com"
+        }
+    ]
+}
