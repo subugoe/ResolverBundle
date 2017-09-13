@@ -11,5 +11,8 @@
     ],
     "autoload": {
        "psr-4": { "Subugoe\\ResolverBundle\\": "" }
+    },
+    "require": {
+        "jms/serializer-bundle": "^2.0"
     }
 }
