@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Subugoe\ResolverBundle\Controller;
 
-use AppBundle\Exception\ResolverException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Subugoe\ResolverBundle\Exception\ResolverException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
