@@ -41,3 +41,4 @@
 **/Entity/*~
 
 /vendor/
+.php_cs.cache
