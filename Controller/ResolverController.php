@@ -27,6 +27,10 @@ class ResolverController extends Controller
             $id = $request->get('PID');
         }
 
+        if (strpos($id, 'GDZ') === 0) {
+            $id = explode('GDZ', $request->get('PID'))[1];
+        }
+        
         if (!$request->get('PID') || !$this->isValidId($id)) {
             throw new ResolverException('Page not found');
         }
