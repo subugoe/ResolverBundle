@@ -31,6 +31,8 @@ class ResolverController extends Controller
             $id = explode('GDZ', $request->get('PID'))[1];
         }
 
+        $id = explode('/', $id)[0];
+
         if (!$request->get('PID') || !$this->isValidId($id)) {
             $isValid = false;
         } else {
