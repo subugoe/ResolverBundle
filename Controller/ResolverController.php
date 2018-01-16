@@ -30,14 +30,16 @@ class ResolverController extends Controller
         if (strpos($id, 'GDZ') === 0) {
             $id = explode('GDZ', $request->get('PID'))[1];
         }
-        
+
         if (!$request->get('PID') || !$this->isValidId($id)) {
-            throw new ResolverException('Page not found');
+            $isValid = false;
+        } else {
+            $isValid = true;
         }
 
         $response = new Response();
 
-        $resolverResponse = $this->getResolverResponse($id, $request);
+        $resolverResponse = $this->getResolverResponse($id, $isValid, $request);
 
         $response->headers->set('Content-Type', 'application/xml; charset=utf-8');
         $response->setContent($this->get('jms_serializer')->serialize($resolverResponse, 'xml'));
@@ -45,21 +47,22 @@ class ResolverController extends Controller
         return $response;
     }
 
-    private function getResolverResponse(string $id, Request $request): \Subugoe\ResolverBundle\Model\Response
+    private function getResolverResponse(string $id, bool $isValid, Request $request): \Subugoe\ResolverBundle\Model\Response
     {
         $response = new \Subugoe\ResolverBundle\Model\Response();
         $response->setHeader(new Header());
 
         $resolvedLpi = new ResolvedLocalPersistentIdentifier();
-        $localPersistentIdentifier = new LocalPersistentIdentifier();
-        $localPersistentIdentifier
-            ->setRequestedLocalPersistentIdentifier($request->getUri())
-            ->setService($this->getParameter('service'))
-            ->setServicehome($this->getParameter('servicehome'))
-            ->setUrl($this->get('router')->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL));
+        if ($isValid) {
+            $localPersistentIdentifier = new LocalPersistentIdentifier();
+            $localPersistentIdentifier
+                ->setRequestedLocalPersistentIdentifier($request->getUri())
+                ->setService($this->getParameter('service'))
+                ->setServicehome($this->getParameter('servicehome'))
+                ->setUrl($this->get('router')->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL));
 
-        $resolvedLpi->setLocalPersistentIdentifier([$localPersistentIdentifier]);
-
+            $resolvedLpi->setLocalPersistentIdentifier([$localPersistentIdentifier]);
+        }
         $response->setResolvedLocalPersistentIdentifier($resolvedLpi);
 
         return $response;
