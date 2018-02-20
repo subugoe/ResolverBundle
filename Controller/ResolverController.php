@@ -5,16 +5,23 @@ declare(strict_types=1);
 namespace Subugoe\ResolverBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Subugoe\ResolverBundle\Model\Header;
-use Subugoe\ResolverBundle\Model\LocalPersistentIdentifier;
-use Subugoe\ResolverBundle\Model\ResolvedLocalPersistentIdentifier;
+use Subugoe\ResolverBundle\Service\ResolverService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\RouterInterface;
 
 class ResolverController extends Controller
 {
+    /**
+     * @var ResolverService
+     */
+    private $resolverService;
+
+    public function setResolverService(ResolverService $resolverService)
+    {
+        $this->resolverService = $resolverService;
+    }
+
     /**
      * @Route("/resolve", name="_resolve", methods={"GET","POST"})
      */
@@ -40,31 +47,10 @@ class ResolverController extends Controller
 
         $response = new Response();
 
-        $resolverResponse = $this->getResolverResponse($id, $isValid, $request);
+        $resolverResponse = $this->resolverService->getResolverResponse($id, $isValid, $request->getUri());
 
         $response->headers->set('Content-Type', 'application/xml; charset=utf-8');
         $response->setContent($this->get('jms_serializer')->serialize($resolverResponse, 'xml'));
-
-        return $response;
-    }
-
-    private function getResolverResponse(string $id, bool $isValid, Request $request): \Subugoe\ResolverBundle\Model\Response
-    {
-        $response = new \Subugoe\ResolverBundle\Model\Response();
-        $response->setHeader(new Header());
-
-        $resolvedLpi = new ResolvedLocalPersistentIdentifier();
-        if ($isValid) {
-            $localPersistentIdentifier = new LocalPersistentIdentifier();
-            $localPersistentIdentifier
-                ->setRequestedLocalPersistentIdentifier($request->getUri())
-                ->setService($this->getParameter('service'))
-                ->setServicehome($this->getParameter('servicehome'))
-                ->setUrl($this->get('router')->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL));
-
-            $resolvedLpi->setLocalPersistentIdentifier([$localPersistentIdentifier]);
-        }
-        $response->setResolvedLocalPersistentIdentifier($resolvedLpi);
 
         return $response;
     }

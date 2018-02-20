@@ -1,0 +1,17 @@
+services:
+    Subugoe\ResolverBundle\Service\ResolverService:
+      autoconfigure: true
+      autowire: true
+      calls:
+        - method: setParameters
+          arguments:
+            - "%service%"
+            - "%servicehome%"
+
+    Subugoe\ResolverBundle\Controller\ResolverController:
+      autoconfigure: true
+      autowire: true
+      calls:
+        - method: setResolverService
+          arguments:
+            - '@Subugoe\ResolverBundle\Service\ResolverService'
