@@ -33,7 +33,7 @@ class Identifier
      *
      * @return Identifier
      */
-    public function setScheme(string $scheme): Identifier
+    public function setScheme(string $scheme): self
     {
         $this->scheme = $scheme;
 
@@ -53,7 +53,7 @@ class Identifier
      *
      * @return Identifier
      */
-    public function setIdentifier(string $identifier): Identifier
+    public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
 

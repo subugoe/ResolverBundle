@@ -72,7 +72,7 @@ class LocalPersistentIdentifier
      * @return LocalPersistentIdentifier
      */
     public function setRequestedLocalPersistentIdentifier(string $requestedLocalPersistentIdentifier
-    ): LocalPersistentIdentifier {
+    ): self {
         $this->requestedLocalPersistentIdentifier = $requestedLocalPersistentIdentifier;
 
         return $this;
@@ -91,7 +91,7 @@ class LocalPersistentIdentifier
      *
      * @return LocalPersistentIdentifier
      */
-    public function setService(string $service): LocalPersistentIdentifier
+    public function setService(string $service): self
     {
         $this->service = $service;
 
@@ -111,7 +111,7 @@ class LocalPersistentIdentifier
      *
      * @return LocalPersistentIdentifier
      */
-    public function setServicehome(string $servicehome): LocalPersistentIdentifier
+    public function setServicehome(string $servicehome): self
     {
         $this->servicehome = $servicehome;
 
@@ -131,7 +131,7 @@ class LocalPersistentIdentifier
      *
      * @return LocalPersistentIdentifier
      */
-    public function setUrl(string $url): LocalPersistentIdentifier
+    public function setUrl(string $url): self
     {
         $this->url = $url;
 
@@ -151,7 +151,7 @@ class LocalPersistentIdentifier
      *
      * @return LocalPersistentIdentifier
      */
-    public function setMine(string $mine): LocalPersistentIdentifier
+    public function setMine(string $mine): self
     {
         $this->mine = $mine;
 
@@ -171,7 +171,7 @@ class LocalPersistentIdentifier
      *
      * @return LocalPersistentIdentifier
      */
-    public function setVersion(string $version): LocalPersistentIdentifier
+    public function setVersion(string $version): self
     {
         $this->version = $version;
 
@@ -191,7 +191,7 @@ class LocalPersistentIdentifier
      *
      * @return LocalPersistentIdentifier
      */
-    public function setAccess(string $access): LocalPersistentIdentifier
+    public function setAccess(string $access): self
     {
         $this->access = $access;
 
@@ -211,7 +211,7 @@ class LocalPersistentIdentifier
      *
      * @return LocalPersistentIdentifier
      */
-    public function setIdentifier(array $identifier): LocalPersistentIdentifier
+    public function setIdentifier(array $identifier): self
     {
         $this->identifier = $identifier;
 

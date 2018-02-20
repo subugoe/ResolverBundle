@@ -36,7 +36,7 @@ class Response
      *
      * @return Response
      */
-    public function setHeader(Header $header): Response
+    public function setHeader(Header $header): self
     {
         $this->header = $header;
 
@@ -58,7 +58,7 @@ class Response
      */
     public function setResolvedLocalPersistentIdentifier(
         ResolvedLocalPersistentIdentifier $resolvedLocalPersistentIdentifier
-    ): Response {
+    ): self {
         $this->resolvedLocalPersistentIdentifier = $resolvedLocalPersistentIdentifier;
 
         return $this;

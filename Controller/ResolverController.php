@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Subugoe\ResolverBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Subugoe\ResolverBundle\Exception\ResolverException;
 use Subugoe\ResolverBundle\Model\Header;
 use Subugoe\ResolverBundle\Model\LocalPersistentIdentifier;
 use Subugoe\ResolverBundle\Model\ResolvedLocalPersistentIdentifier;
@@ -27,7 +26,7 @@ class ResolverController extends Controller
             $id = $request->get('PID');
         }
 
-        if (strpos($id, 'GDZ') === 0) {
+        if (0 === strpos($id, 'GDZ')) {
             $id = explode('GDZ', $request->get('PID'))[1];
         }
 

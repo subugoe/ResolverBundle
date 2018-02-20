@@ -31,7 +31,7 @@ class ResolvedLocalPersistentIdentifier
      *
      * @return ResolvedLocalPersistentIdentifier
      */
-    public function setLocalPersistentIdentifier(array $localPersistentIdentifier): ResolvedLocalPersistentIdentifier
+    public function setLocalPersistentIdentifier(array $localPersistentIdentifier): self
     {
         $this->localPersistentIdentifier = $localPersistentIdentifier;
 

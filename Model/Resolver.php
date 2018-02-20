@@ -15,7 +15,7 @@ class Resolver
     /**
      * @return Resolver
      */
-    public function getResponse(): Resolver
+    public function getResponse(): self
     {
         return $this->response;
     }
@@ -25,7 +25,7 @@ class Resolver
      *
      * @return Resolver
      */
-    public function setResponse(Resolver $response): Resolver
+    public function setResponse(self $response): self
     {
         $this->response = $response;
 

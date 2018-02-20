@@ -28,7 +28,7 @@ class Header
      *
      * @return Header
      */
-    public function setVersion(string $version): Header
+    public function setVersion(string $version): self
     {
         $this->version = $version;
 
