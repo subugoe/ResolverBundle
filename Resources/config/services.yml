@@ -15,3 +15,6 @@ services:
         - method: setResolverService
           arguments:
             - '@Subugoe\ResolverBundle\Service\ResolverService'
+        - method: setSolariumClient
+          arguments:
+            - '@solarium.client'

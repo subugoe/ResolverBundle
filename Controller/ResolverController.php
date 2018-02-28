@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Subugoe\ResolverBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Solarium\Core\Client\ClientInterface;
 use Subugoe\ResolverBundle\Service\ResolverService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +18,19 @@ class ResolverController extends Controller
      */
     private $resolverService;
 
+    /**
+     * @var ClientInterface
+     */
+    private $client;
+
     public function setResolverService(ResolverService $resolverService)
     {
         $this->resolverService = $resolverService;
+    }
+
+    public function setSolariumClient(ClientInterface $client)
+    {
+        $this->client = $client;
     }
 
     /**
@@ -33,13 +44,11 @@ class ResolverController extends Controller
             $id = $request->get('PID');
         }
 
-        if (0 === strpos($id, 'GDZ')) {
-            $id = explode('GDZ', $request->get('PID'))[1];
-        }
-
         $id = explode('/', $id)[0];
 
-        if (!$request->get('PID') || !$this->isValidId($id)) {
+        $resolvedId = $this->getResolvedId($id);
+
+        if (!$request->get('PID') || 0 === strlen($resolvedId)) {
             $isValid = false;
         } else {
             $isValid = true;
@@ -47,7 +56,7 @@ class ResolverController extends Controller
 
         $response = new Response();
 
-        $resolverResponse = $this->resolverService->getResolverResponse($id, $isValid, $request->getUri());
+        $resolverResponse = $this->resolverService->getResolverResponse($resolvedId, $isValid, $request->getUri());
 
         $response->headers->set('Content-Type', 'application/xml; charset=utf-8');
         $response->setContent($this->get('jms_serializer')->serialize($resolverResponse, 'xml'));
@@ -55,19 +64,12 @@ class ResolverController extends Controller
         return $response;
     }
 
-    /**
-     * @param string $id
-     *
-     * @return bool
-     */
-    private function isValidId($id): bool
+    private function getResolvedId(string $id): string
     {
-        try {
-            $this->get('subugoe_find.search_service')->getDocumentById($id);
-        } catch (\InvalidArgumentException $invalidArgumentException) {
-            return false;
-        }
+        $query = $this->client->createSelect();
+        $query->setQuery(sprintf('identifier:%s', $id));
+        $resultset = $this->client->select($query)->getDocuments()[0]['work_id'] ?? '';
 
-        return true;
+        return $resultset;
     }
 }
