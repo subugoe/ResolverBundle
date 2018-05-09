@@ -1,3 +1,0 @@
-subugoe_resolver_resolve:
-    methods:   "GET"
-    defaults:  { _controller: SubugoeResolverBundle:Resolver:index }

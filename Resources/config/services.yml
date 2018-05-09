@@ -7,14 +7,3 @@ services:
           arguments:
             - "%service%"
             - "%servicehome%"
-
-    Subugoe\ResolverBundle\Controller\ResolverController:
-      autoconfigure: true
-      autowire: true
-      calls:
-        - method: setResolverService
-          arguments:
-            - '@Subugoe\ResolverBundle\Service\ResolverService'
-        - method: setSolariumClient
-          arguments:
-            - '@solarium.client'
