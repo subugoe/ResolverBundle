@@ -1,5 +1,6 @@
 services:
-    Subugoe\ResolverBundle\Service\ResolverService:
+    Subugoe\ResolverBundle\Service\ResolverServiceInterface:
+      class: Subugoe\ResolverBundle\Service\ResolverService
       autoconfigure: true
       autowire: true
       calls:

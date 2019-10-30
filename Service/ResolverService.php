@@ -1,25 +1,20 @@
 <?php
+declare(strict_types=1);
 
 namespace Subugoe\ResolverBundle\Service;
 
 use JMS\Serializer\SerializerInterface;
-use Subugoe\FindBundle\Service\SearchService;
 use Subugoe\ResolverBundle\Model\Header;
 use Subugoe\ResolverBundle\Model\LocalPersistentIdentifier;
 use Subugoe\ResolverBundle\Model\ResolvedLocalPersistentIdentifier;
 use Symfony\Component\Routing\RouterInterface;
 
-class ResolverService
+class ResolverService implements ResolverServiceInterface
 {
     /**
      * @var SerializerInterface
      */
     private $serializer;
-
-    /**
-     * @var SearchService
-     */
-    private $searchService;
 
     /**
      * @var string
@@ -36,14 +31,13 @@ class ResolverService
      */
     private $router;
 
-    public function __construct(SerializerInterface $serializer, SearchService $searchService, RouterInterface $router)
+    public function __construct(SerializerInterface $serializer, RouterInterface $router)
     {
         $this->serializer = $serializer;
-        $this->searchService = $searchService;
         $this->router = $router;
     }
 
-    public function setParameters(string $service, string $serviceHome)
+    public function setParameters(string $service, string $serviceHome): void
     {
         $this->service = $service;
         $this->serviceHome = $serviceHome;
