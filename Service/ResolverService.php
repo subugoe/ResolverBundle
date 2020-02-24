@@ -55,7 +55,7 @@ class ResolverService implements ResolverServiceInterface
                 ->setRequestedLocalPersistentIdentifier($uri)
                 ->setService($this->service)
                 ->setServicehome($this->serviceHome)
-                ->setUrl($this->router->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL));
+                ->setUrl(urldecode($this->router->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL)));
 
             $resolvedLpi->setLocalPersistentIdentifier([$localPersistentIdentifier]);
         }
