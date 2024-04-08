@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Subugoe\ResolverBundle\Service;
@@ -12,11 +13,6 @@ use Symfony\Component\Routing\RouterInterface;
 class ResolverService implements ResolverServiceInterface
 {
     /**
-     * @var SerializerInterface
-     */
-    private $serializer;
-
-    /**
      * @var string
      */
     private $service;
@@ -26,21 +22,8 @@ class ResolverService implements ResolverServiceInterface
      */
     private $serviceHome;
 
-    /**
-     * @var RouterInterface
-     */
-    private $router;
-
-    public function __construct(SerializerInterface $serializer, RouterInterface $router)
+    public function __construct(private readonly SerializerInterface $serializer, private readonly RouterInterface $router)
     {
-        $this->serializer = $serializer;
-        $this->router = $router;
-    }
-
-    public function setParameters(string $service, string $serviceHome): void
-    {
-        $this->service = $service;
-        $this->serviceHome = $serviceHome;
     }
 
     public function getResolverResponse(string $id, bool $isValid, string $uri): \Subugoe\ResolverBundle\Model\Response
@@ -62,5 +45,11 @@ class ResolverService implements ResolverServiceInterface
         $response->setResolvedLocalPersistentIdentifier($resolvedLpi);
 
         return $response;
+    }
+
+    public function setParameters(string $service, string $serviceHome): void
+    {
+        $this->service = $service;
+        $this->serviceHome = $serviceHome;
     }
 }

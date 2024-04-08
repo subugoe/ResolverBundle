@@ -13,29 +13,28 @@ class Response
 {
     /**
      * @var Header
+     *
      * @Serializer\XmlElement(cdata=false)
      */
     private $header;
 
     /**
      * @var ResolvedLocalPersistentIdentifier
+     *
      * @Serializer\SerializedName("resolvedLPIs")
      */
     private $resolvedLocalPersistentIdentifier;
 
-    /**
-     * @return Header
-     */
     public function getHeader(): Header
     {
         return $this->header;
     }
 
-    /**
-     * @param Header $header
-     *
-     * @return Response
-     */
+    public function getResolvedLocalPersistentIdentifier(): ResolvedLocalPersistentIdentifier
+    {
+        return $this->resolvedLocalPersistentIdentifier;
+    }
+
     public function setHeader(Header $header): self
     {
         $this->header = $header;
@@ -43,19 +42,6 @@ class Response
         return $this;
     }
 
-    /**
-     * @return ResolvedLocalPersistentIdentifier
-     */
-    public function getResolvedLocalPersistentIdentifier(): ResolvedLocalPersistentIdentifier
-    {
-        return $this->resolvedLocalPersistentIdentifier;
-    }
-
-    /**
-     * @param ResolvedLocalPersistentIdentifier $resolvedLocalPersistentIdentifier
-     *
-     * @return Response
-     */
     public function setResolvedLocalPersistentIdentifier(
         ResolvedLocalPersistentIdentifier $resolvedLocalPersistentIdentifier
     ): self {

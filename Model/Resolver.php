@@ -12,19 +12,11 @@ class Resolver
      */
     private $response;
 
-    /**
-     * @return Resolver
-     */
     public function getResponse(): self
     {
         return $this->response;
     }
 
-    /**
-     * @param Resolver $response
-     *
-     * @return Resolver
-     */
     public function setResponse(self $response): self
     {
         $this->response = $response;

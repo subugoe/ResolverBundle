@@ -11,51 +11,35 @@ class Identifier
 {
     /**
      * @var string
+     */
+    private $identifier;
+    /**
+     * @var string
+     *
      * @Serializer\XmlAttribute()
      */
     private $scheme;
 
-    /**
-     * @var string
-     */
-    private $identifier;
-
-    /**
-     * @return string
-     */
-    public function getScheme(): string
-    {
-        return $this->scheme;
-    }
-
-    /**
-     * @param string $scheme
-     *
-     * @return Identifier
-     */
-    public function setScheme(string $scheme): self
-    {
-        $this->scheme = $scheme;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getIdentifier(): string
     {
         return $this->identifier;
     }
 
-    /**
-     * @param string $identifier
-     *
-     * @return Identifier
-     */
+    public function getScheme(): string
+    {
+        return $this->scheme;
+    }
+
     public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
+
+        return $this;
+    }
+
+    public function setScheme(string $scheme): self
+    {
+        $this->scheme = $scheme;
 
         return $this;
     }

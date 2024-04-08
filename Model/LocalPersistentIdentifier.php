@@ -11,44 +11,7 @@ class LocalPersistentIdentifier
 {
     /**
      * @var string
-     * @Serializer\SerializedName("requestedLPI")
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $requestedLocalPersistentIdentifier;
-
-    /**
-     * @var string
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $service;
-
-    /**
-     * @var string
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $servicehome;
-
-    /**
-     * @var string
-     * @Serializer\SerializedName("URL")
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $url;
-
-    /**
-     * @var string
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $mine;
-
-    /**
-     * @var string
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $version = '1.0';
-
-    /**
-     * @var string
+     *
      * @Serializer\XmlElement(cdata=false)
      */
     private $access = 'free';
@@ -59,138 +22,95 @@ class LocalPersistentIdentifier
     private $identifier;
 
     /**
-     * @return string
-     */
-    public function getRequestedLocalPersistentIdentifier(): string
-    {
-        return $this->requestedLocalPersistentIdentifier;
-    }
-
-    /**
-     * @param string $requestedLocalPersistentIdentifier
+     * @var string
      *
-     * @return LocalPersistentIdentifier
+     * @Serializer\XmlElement(cdata=false)
      */
-    public function setRequestedLocalPersistentIdentifier(string $requestedLocalPersistentIdentifier
-    ): self {
-        $this->requestedLocalPersistentIdentifier = $requestedLocalPersistentIdentifier;
-
-        return $this;
-    }
-
+    private $mine;
     /**
-     * @return string
-     */
-    public function getService(): string
-    {
-        return $this->service;
-    }
-
-    /**
-     * @param string $service
+     * @var string
      *
-     * @return LocalPersistentIdentifier
-     */
-    public function setService(string $service): self
-    {
-        $this->service = $service;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getServicehome(): string
-    {
-        return $this->servicehome;
-    }
-
-    /**
-     * @param string $servicehome
+     * @Serializer\SerializedName("requestedLPI")
      *
-     * @return LocalPersistentIdentifier
+     * @Serializer\XmlElement(cdata=false)
      */
-    public function setServicehome(string $servicehome): self
-    {
-        $this->servicehome = $servicehome;
-
-        return $this;
-    }
+    private $requestedLocalPersistentIdentifier;
 
     /**
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    /**
-     * @param string $url
+     * @var string
      *
-     * @return LocalPersistentIdentifier
+     * @Serializer\XmlElement(cdata=false)
      */
-    public function setUrl(string $url): self
-    {
-        $this->url = $url;
-
-        return $this;
-    }
+    private $service;
 
     /**
-     * @return string
-     */
-    public function getMine(): string
-    {
-        return $this->mine;
-    }
-
-    /**
-     * @param string $mine
+     * @var string
      *
-     * @return LocalPersistentIdentifier
+     * @Serializer\XmlElement(cdata=false)
      */
-    public function setMine(string $mine): self
-    {
-        $this->mine = $mine;
-
-        return $this;
-    }
+    private $servicehome;
 
     /**
-     * @return string
-     */
-    public function getVersion(): string
-    {
-        return $this->version;
-    }
-
-    /**
-     * @param string $version
+     * @var string
      *
-     * @return LocalPersistentIdentifier
+     * @Serializer\SerializedName("URL")
+     *
+     * @Serializer\XmlElement(cdata=false)
      */
-    public function setVersion(string $version): self
-    {
-        $this->version = $version;
-
-        return $this;
-    }
+    private $url;
 
     /**
-     * @return string
+     * @var string
+     *
+     * @Serializer\XmlElement(cdata=false)
      */
+    private $version = '1.0';
+
+    public function addIdentifier(Identifier $identifier): void
+    {
+        $this->identifier[] = $identifier;
+    }
+
     public function getAccess(): string
     {
         return $this->access;
     }
 
-    /**
-     * @param string $access
-     *
-     * @return LocalPersistentIdentifier
-     */
+    public function getIdentifier(): array
+    {
+        return $this->identifier;
+    }
+
+    public function getMine(): string
+    {
+        return $this->mine;
+    }
+
+    public function getRequestedLocalPersistentIdentifier(): string
+    {
+        return $this->requestedLocalPersistentIdentifier;
+    }
+
+    public function getService(): string
+    {
+        return $this->service;
+    }
+
+    public function getServicehome(): string
+    {
+        return $this->servicehome;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function getVersion(): string
+    {
+        return $this->version;
+    }
+
     public function setAccess(string $access): self
     {
         $this->access = $access;
@@ -198,19 +118,6 @@ class LocalPersistentIdentifier
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function getIdentifier(): array
-    {
-        return $this->identifier;
-    }
-
-    /**
-     * @param array $identifier
-     *
-     * @return LocalPersistentIdentifier
-     */
     public function setIdentifier(array $identifier): self
     {
         $this->identifier = $identifier;
@@ -218,11 +125,45 @@ class LocalPersistentIdentifier
         return $this;
     }
 
-    /**
-     * @param Identifier $identifier
-     */
-    public function addIdentifier(Identifier $identifier)
+    public function setMine(string $mine): self
     {
-        $this->identifier[] = $identifier;
+        $this->mine = $mine;
+
+        return $this;
+    }
+
+    public function setRequestedLocalPersistentIdentifier(string $requestedLocalPersistentIdentifier
+    ): self {
+        $this->requestedLocalPersistentIdentifier = $requestedLocalPersistentIdentifier;
+
+        return $this;
+    }
+
+    public function setService(string $service): self
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    public function setServicehome(string $servicehome): self
+    {
+        $this->servicehome = $servicehome;
+
+        return $this;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function setVersion(string $version): self
+    {
+        $this->version = $version;
+
+        return $this;
     }
 }
