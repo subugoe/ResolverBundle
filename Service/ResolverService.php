@@ -31,11 +31,13 @@ class ResolverService implements ResolverServiceInterface
         $response = new \Subugoe\ResolverBundle\Model\Response();
         $response->setHeader(new Header());
 
+        $identifier = substr($uri, strpos($uri, "=") + 1);
+
         $resolvedLpi = new ResolvedLocalPersistentIdentifier();
         if ($isValid) {
             $localPersistentIdentifier = new LocalPersistentIdentifier();
             $localPersistentIdentifier
-                ->setRequestedLocalPersistentIdentifier($uri)
+                ->setRequestedLocalPersistentIdentifier($identifier)
                 ->setService($this->service)
                 ->setServicehome($this->serviceHome)
                 ->setUrl(urldecode($this->router->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL)));
