@@ -13,11 +13,11 @@
        "psr-4": { "Subugoe\\ResolverBundle\\": "" }
     },
     "require": {
-        "php": "8.2.*",
+        "php": "^8.2",
         "jms/serializer-bundle": "^4.0 || ^5.0"
     },
     "require-dev": {
-        "rector/rector": "^1.0",
+        "rector/rector": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.52"
     }
 }
