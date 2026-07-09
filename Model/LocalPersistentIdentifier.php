@@ -9,62 +9,30 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class LocalPersistentIdentifier
 {
-    /**
-     * @var string
-     *
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $access = 'free';
+    #[Serializer\XmlElement(cdata: false)]
+    private string $access = 'free';
 
-    /**
-     * @var array
-     */
-    private $identifier;
+    private array $identifier;
 
-    /**
-     * @var string
-     *
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $mine;
-    /**
-     * @var string
-     *
-     * @Serializer\SerializedName("requestedLPI")
-     *
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $requestedLocalPersistentIdentifier;
+    #[Serializer\XmlElement(cdata: false)]
+    private string $mine;
 
-    /**
-     * @var string
-     *
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $service;
+    #[Serializer\XmlElement(cdata: false)]
+    #[Serializer\SerializedName('requestedLPI')]
+    private string $requestedLocalPersistentIdentifier;
 
-    /**
-     * @var string
-     *
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $servicehome;
+    #[Serializer\XmlElement(cdata: false)]
+    private string $service;
 
-    /**
-     * @var string
-     *
-     * @Serializer\SerializedName("URL")
-     *
-     * @Serializer\XmlElement(cdata=false)
-     */
+    #[Serializer\XmlElement(cdata: false)]
+    private string $servicehome;
+
+    #[Serializer\XmlElement(cdata: false)]
+    #[Serializer\SerializedName('URL')]
     private $url;
 
-    /**
-     * @var string
-     *
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $version = '1.0';
+    #[Serializer\XmlElement(cdata: false)]
+    private string $version = '1.0';
 
     public function addIdentifier(Identifier $identifier): void
     {
@@ -132,7 +100,7 @@ class LocalPersistentIdentifier
         return $this;
     }
 
-    public function setRequestedLocalPersistentIdentifier(string $requestedLocalPersistentIdentifier
+    public function setRequestedLocalPersistentIdentifier(string $requestedLocalPersistentIdentifier,
     ): self {
         $this->requestedLocalPersistentIdentifier = $requestedLocalPersistentIdentifier;
 

@@ -8,19 +8,14 @@ use JMS\Serializer\SerializerInterface;
 use Subugoe\ResolverBundle\Model\Header;
 use Subugoe\ResolverBundle\Model\LocalPersistentIdentifier;
 use Subugoe\ResolverBundle\Model\ResolvedLocalPersistentIdentifier;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 class ResolverService implements ResolverServiceInterface
 {
-    /**
-     * @var string
-     */
-    private $service;
+    private string $service;
 
-    /**
-     * @var string
-     */
-    private $serviceHome;
+    private string $serviceHome;
 
     public function __construct(private readonly SerializerInterface $serializer, private readonly RouterInterface $router)
     {
@@ -31,7 +26,7 @@ class ResolverService implements ResolverServiceInterface
         $response = new \Subugoe\ResolverBundle\Model\Response();
         $response->setHeader(new Header());
 
-        $identifier = substr($uri, strpos($uri, "=") + 1);
+        $identifier = substr($uri, strpos($uri, '=') + 1);
 
         $resolvedLpi = new ResolvedLocalPersistentIdentifier();
         if ($isValid) {
@@ -40,7 +35,7 @@ class ResolverService implements ResolverServiceInterface
                 ->setRequestedLocalPersistentIdentifier($identifier)
                 ->setService($this->service)
                 ->setServicehome($this->serviceHome)
-                ->setUrl(urldecode($this->router->generate('_detail', ['id' => $id], RouterInterface::ABSOLUTE_URL)));
+                ->setUrl(urldecode($this->router->generate('_detail', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL)));
 
             $resolvedLpi->setLocalPersistentIdentifier([$localPersistentIdentifier]);
         }

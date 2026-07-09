@@ -9,12 +9,8 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Header
 {
-    /**
-     * @var string
-     *
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $version = '0.1';
+    #[Serializer\XmlElement(cdata: false)]
+    private string $version = '0.1';
 
     public function getVersion(): string
     {

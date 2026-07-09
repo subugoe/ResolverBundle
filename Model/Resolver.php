@@ -7,10 +7,7 @@ namespace Subugoe\ResolverBundle\Model;
  */
 class Resolver
 {
-    /**
-     * @var Resolver
-     */
-    private $response;
+    private Resolver $response;
 
     public function getResponse(): self
     {

@@ -6,19 +6,16 @@ use JMS\Serializer\Annotation as Serializer;
 
 /**
  * LPI.
- *
- * @Serializer\XmlDiscriminator()
  */
+#[Serializer\XmlDiscriminator()]
 class ResolvedLocalPersistentIdentifier
 {
     /**
      * @var array<LocalPersistentIdentifier>
-     *
-     * @Serializer\SerializedName("LPI")
-     *
-     * @Serializer\XmlList(inline = true, entry = "LPI"))
      */
-    private $localPersistentIdentifier;
+    #[Serializer\SerializedName('LPI')]
+    #[Serializer\XmlList(entry: 'LPI', inline: true)]
+    private array $localPersistentIdentifier;
 
     public function getLocalPersistentIdentifier(): array
     {

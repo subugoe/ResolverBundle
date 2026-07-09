@@ -6,24 +6,15 @@ use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Response section for resolver response.
- *
- * @Serializer\XmlRoot("response")
  */
+#[Serializer\XmlRoot('response')]
 class Response
 {
-    /**
-     * @var Header
-     *
-     * @Serializer\XmlElement(cdata=false)
-     */
-    private $header;
+    #[Serializer\XmlElement(cdata: false)]
+    private Header $header;
 
-    /**
-     * @var ResolvedLocalPersistentIdentifier
-     *
-     * @Serializer\SerializedName("resolvedLPIs")
-     */
-    private $resolvedLocalPersistentIdentifier;
+    #[Serializer\SerializedName('resolvedLPIs')]
+    private ResolvedLocalPersistentIdentifier $resolvedLocalPersistentIdentifier;
 
     public function getHeader(): Header
     {
@@ -43,7 +34,7 @@ class Response
     }
 
     public function setResolvedLocalPersistentIdentifier(
-        ResolvedLocalPersistentIdentifier $resolvedLocalPersistentIdentifier
+        ResolvedLocalPersistentIdentifier $resolvedLocalPersistentIdentifier,
     ): self {
         $this->resolvedLocalPersistentIdentifier = $resolvedLocalPersistentIdentifier;
 

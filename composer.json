@@ -13,7 +13,7 @@
        "psr-4": { "Subugoe\\ResolverBundle\\": "" }
     },
     "require": {
-        "php": "^8.2",
+        "php": ">= 8.4.0 || <= 8.5.99",
         "jms/serializer-bundle": "^4.0 || ^5.0"
     },
     "require-dev": {

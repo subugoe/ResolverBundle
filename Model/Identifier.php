@@ -9,16 +9,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Identifier
 {
-    /**
-     * @var string
-     */
-    private $identifier;
-    /**
-     * @var string
-     *
-     * @Serializer\XmlAttribute()
-     */
-    private $scheme;
+    private string $identifier;
+
+    #[Serializer\XmlAttribute]
+    private string $scheme;
 
     public function getIdentifier(): string
     {
